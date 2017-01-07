@@ -17,7 +17,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
   data = []
   #travedata[travedata.length-1]["value"]
   for i in 0..travedata.length-1
-    data[i] = {"x" => i, "y" => travedata[i]["value"]-509.0}
+    data[i] = {"x" => DateTime.strptime(travedata[i]["timestamp"]).strftime('%s').to_i, "y" => travedata[i]["value"]-509.0}
   end
   if data.last["y"] > 0
     send_event(:trave, points: data, displayedValue: data.last["y"])
