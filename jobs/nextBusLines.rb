@@ -47,7 +47,6 @@ SCHEDULER.every '120s', :first_in => 0 do |job|
     if(!(busLines.body == 'EFA error status: INVALID_STATION'))
       nextBusses = JSON.parse(busLines.body)
       for j in 0..nextBusses.length-1
-        puts startstaions[i]+' '+nextBusses[j]['number']+' '+nextBusses[j]['to'];
         dep = Depature.new(startstaions[i], nextBusses[j]['to'], nextBusses[j]['number'], nextBusses[j]['departureTime'])
         rides.push(dep);
       end
@@ -58,7 +57,6 @@ SCHEDULER.every '120s', :first_in => 0 do |job|
   relevantRides = []
 
   if(rides.length == 40)
-    puts 'yes... lets go'
 
     for i in 0..rides.length-1
       if(relevantLines.include? rides[i].getBusLine)
