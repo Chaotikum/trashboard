@@ -36,7 +36,7 @@ wahmstrasse = '/departure?from=707213&providerName=sh&limit=20'
 connectionsOfInterest = [sandstrasse, wahmstrasse]
 startstaions = ['Sandstraße', 'Wahmstraße']
 rides = [];
-relevantLines = ['9', '6', '1', '4', '5', '10', '11']
+relevantLines = ['9', '6', '1', '4', '5']
 
 SCHEDULER.every '120s', :first_in => 0 do |job|
   rides = [];
@@ -66,6 +66,6 @@ SCHEDULER.every '120s', :first_in => 0 do |job|
 
     relevantRides = relevantRides.sort_by {|obj| obj.getTime}
 
-    send_event('nextConnextions', { items: relevantRides.take(10).map { |d| {label: d.getBusLine+' nach '+d.getTo[0,10], value: DateTime.parse(d.getTime).strftime("%H:%M") }}})
+    send_event('nextConnextions', { items: relevantRides.take(13).map { |d| {label: d.getBusLine+' nach '+d.getTo[0,10], value: DateTime.parse(d.getTime).strftime("%H:%M") }}})
   end
 end
