@@ -18,7 +18,7 @@ SCHEDULER.every '15s', :first_in => 0 do |job|
   else
 	start -= 20.hours
   end
-	
+
   drinks = drinks.select { |d|
 	  ts = DateTime.parse(d['consumetime'])
 	  ts > start

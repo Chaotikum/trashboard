@@ -40,7 +40,7 @@ relevantLines = ['9', '6', '1', '4', '5']
 
 SCHEDULER.every '120s', :first_in => 0 do |job|
   rides = [];
-  http = Net::HTTP.new('fritz.nobreakspace.org', 8585)
+  http = Net::HTTP.new('fritz.nobreakspace.org', 8080)
 
   for i in 0..connectionsOfInterest.length-1
     busLines = http.request(Net::HTTP::Get.new(connectionsOfInterest[i]))
